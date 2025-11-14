@@ -14,7 +14,6 @@
   <div class="product-card">
     <div class="product-image">
       <img :src="props.image" :alt="props.title"/>
-<!--      <img src="https://www.gstatic.com/webp/gallery/4.sm.jpg" :alt="props.title"/>-->
     </div>
     <div class="product-info">
       <h2>{{ props.title }}</h2>
