@@ -61,8 +61,8 @@ onMounted(() => {
         <p>Найдите нужный товар по названию или цене</p>
         <form class="search-form" id="searchForm" @submit.prevent="searchProducts">
           <input type="text" v-model="searchName" placeholder="Поиск по названию...">
-          <input type="text" placeholder="Цена от...">
-          <input type="text" placeholder="Цена до...">
+          <input type="text" v-model="searchPriceFrom" placeholder="Цена от...">
+          <input type="text" v-model="searchPriceTo" placeholder="Цена до...">
           <button type="submit">Найти</button>
         </form>
       </div>

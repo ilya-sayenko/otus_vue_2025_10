@@ -11,8 +11,7 @@ const props = defineProps({
 
 <template>
   <div class="product-card">
-    <img class="product-image" src="../assets/image.png" :alt="title">
-<!--    <img class="product-image" :src="image" :alt="title">-->
+    <img class="product-image" :src="image" :alt="title">
     <h3 class="product-title">{{ title }}</h3>
     <div class="product-price">{{ price }}</div>
     <p class="product-description">{{ description }}</p>
