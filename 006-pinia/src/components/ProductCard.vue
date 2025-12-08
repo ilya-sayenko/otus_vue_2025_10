@@ -1,6 +1,6 @@
 <script setup>
 import {useRouter} from "vue-router";
-import {CartService} from "@/services/CartService.js";
+import {useCartStore} from "@/stores/cartStore.js";
 
 const props = defineProps({
   id: Number,
@@ -12,14 +12,14 @@ const props = defineProps({
 })
 
 const router = useRouter()
-const cartService = new CartService()
+const cartStore = useCartStore()
 
 function routeToProductPage() {
   router.push(`/products/${props.id}`)
 }
 
 function addProductToCart() {
-  cartService.putProduct({
+  cartStore.putProduct({
     id: props.id,
     title: props.title,
     price: props.price,

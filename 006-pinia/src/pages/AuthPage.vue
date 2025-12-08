@@ -1,11 +1,11 @@
 <script setup>
-import {AuthService} from "@/services/AuthService.js";
 import {useRouter} from "vue-router";
 import * as yup from 'yup';
 import {useField, useForm} from "vee-validate";
+import {useAuthStore} from "@/stores/authStore.js";
 
-const router = useRouter();
-const authService = new AuthService();
+const router = useRouter()
+const authStore = useAuthStore()
 
 const validationSchema = yup.object({
   login: yup.string().required(),
@@ -24,7 +24,7 @@ const { value: login } = useField('login');
 const { value: password } = useField('password');
 
 const auth = handleSubmit(async (values) => {
-  await authService.login(values.login, values.password)
+  await authStore.login(values.login, values.password)
   await router.push('/products/add')
 }, (values) => {
   alert(Object.values(values.errors));

@@ -1,46 +1,21 @@
 <script setup>
-  import {CartService} from "@/services/CartService.js";
-  import {ref, watch} from "vue";
+  import {useCartStore} from "@/stores/cartStore.js";
+  import {storeToRefs} from "pinia";
 
   const props = defineProps({
     showCart: Boolean
   })
 
-  const cartService = new CartService()
-  const products = ref([])
-  const totalPrice = ref(0)
-  const totalCount = ref(0)
+  const cartStore = useCartStore()
+  const { products, totalPrice, totalCount } = storeToRefs(cartStore)
 
   function removeProductFromCart(id) {
-    cartService.removeProduct(id)
-    products.value = cartService.getProducts()
+    cartStore.removeProduct(id)
   }
 
   function clearCart() {
-    cartService.removeAllProducts()
-    products.value = cartService.getProducts()
+    cartStore.removeAllProducts()
   }
-
-  function getTotalPrice() {
-    return products.value.reduce((acc, item) => acc + (item.count * item.price), 0)
-  }
-
-  function getTotalCount() {
-    return products.value.reduce((acc, item) => acc + item.count, 0)
-  }
-
-  watch(() => props.showCart, (newVal, oldVal) => {
-    if (newVal) {
-      products.value = cartService.getProducts()
-      totalPrice.value = getTotalPrice()
-      totalCount.value = getTotalCount()
-    }
-  })
-
-  watch(() => products.value, (newVal, oldVal) => {
-    totalPrice.value = getTotalPrice()
-    totalCount.value = getTotalCount()
-  })
 </script>
 
 <template>

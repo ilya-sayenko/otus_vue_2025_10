@@ -2,18 +2,18 @@
 import {useRoute} from "vue-router";
 import {computed, onMounted, ref} from "vue";
 import axios from "axios";
-import {CartService} from "@/services/CartService.js";
+import {useCartStore} from "@/stores/cartStore.js";
 
-const route = useRoute();
-const productId = computed(() => route.params.id);
-const product = ref({});
-const cartService = new CartService()
+const route = useRoute()
+const productId = computed(() => route.params.id)
+const product = ref({})
+const cartStore = useCartStore()
 
 function getProductHttp(id) {
-  return axios.get(`https://fakestoreapi.com/products/${id}`);
+  return axios.get(`https://fakestoreapi.com/products/${id}`)
 }
 
-async function getProduct() {
+async function getProductData() {
   getProductHttp(productId.value)
     .then((response) => {
       product.value = response.data;
@@ -21,7 +21,7 @@ async function getProduct() {
 }
 
 function addProductToCart() {
-  cartService.putProduct({
+  cartStore.putProduct({
     id: product.value.id,
     title: product.value.title,
     price: product.value.price,
@@ -30,7 +30,7 @@ function addProductToCart() {
 }
 
 onMounted(() => {
-  getProduct()
+  getProductData()
 })
 </script>
 

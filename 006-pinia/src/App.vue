@@ -1,17 +1,17 @@
 <script setup>
-import {AuthService} from "@/services/AuthService.js";
 import {ref} from "vue";
 import Cart from "@/components/Cart.vue";
+import {useAuthStore} from "@/stores/authStore.js";
 
-const authService = new AuthService();
-const showCart = ref(false);
+const authStore = useAuthStore()
+const showCart = ref(false)
 
 function logout() {
-  authService.logout();
+  authStore.logout()
 }
 
 function toggleShowCart() {
-  showCart.value = !showCart.value;
+  showCart.value = !showCart.value
 }
 </script>
 
