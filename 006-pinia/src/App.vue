@@ -2,8 +2,10 @@
 import {ref} from "vue";
 import Cart from "@/components/Cart.vue";
 import {useAuthStore} from "@/stores/authStore.js";
+import {storeToRefs} from "pinia";
 
 const authStore = useAuthStore()
+const { isAuthenticated } = storeToRefs(authStore)
 const showCart = ref(false)
 
 function logout() {
@@ -16,7 +18,7 @@ function toggleShowCart() {
 </script>
 
 <template>
-  <nav class="navbar">
+  <nav class="navbar" v-if="isAuthenticated">
     <div class="navbar-content">
       <div class="nav-links">
         <RouterLink to="/" class="nav-link">Главная</RouterLink>
