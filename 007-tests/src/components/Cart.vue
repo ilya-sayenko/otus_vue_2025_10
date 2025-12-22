@@ -21,7 +21,6 @@
 </script>
 
 <template>
-
   <div class="cart-dropdown" :class="{active: props.showCart}" id="cartDropdown">
     <button class="cart-close" @click="emit('closeCart')">✕</button>
     <h3>Корзина (<span id="cartCount">{{ totalCount }}</span>)</h3>
