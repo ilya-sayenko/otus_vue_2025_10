@@ -3,6 +3,7 @@ import axios, {type AxiosResponse} from "axios";
 import type {Participant} from "@/models/Participant.ts";
 import type {Spending} from "@/models/Spending.ts";
 import type {Transaction} from "@/models/Transaction.ts";
+import type {PartyCreateRequest} from "@/http/models/PartyCreateRequest.ts";
 
 export class MoneySplitterHttpClient {
 
@@ -25,6 +26,11 @@ export class MoneySplitterHttpClient {
 
   async getTransactionsByPartyId(partyId: string): Promise<Transaction[]> {
     const response: AxiosResponse<Transaction[]> = await axios.get(`${this.baseUrl}/parties/${partyId}/transactions`);
+    return response.data;
+  }
+
+  async postParty(party: PartyCreateRequest): Promise<string> {
+    const response: AxiosResponse<string> = await axios.post(`${this.baseUrl}/parties`, party);
     return response.data;
   }
 }

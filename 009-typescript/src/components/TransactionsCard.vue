@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="card transactions-card">
+  <div class="card card-translated transactions-card">
     <h2>🧮 Кто кому должен?</h2>
     <p class="transactions-card-description">Здесь будет показан расчёт задолженностей.</p>
 

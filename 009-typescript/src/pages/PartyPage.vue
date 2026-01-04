@@ -24,6 +24,8 @@ onMounted(async () => {
   await partyStore.loadPartyById(partyId.value)
   // party.value = await httpClient.getPartyById(partyId.value);
 
+  console.log(party.value)
+
 })
 
 </script>
@@ -31,12 +33,7 @@ onMounted(async () => {
 <template>
   <div class="container">
     <div class="party-page-content">
-
-      <PartyHeaderCard v-if="party"
-        :name="party.name"
-        :description="party.description"
-      ></PartyHeaderCard>
-
+      <PartyHeaderCard></PartyHeaderCard>
       <div class="party-page-details">
         <ParticipantsCard></ParticipantsCard>
         <SpendingsCard></SpendingsCard>

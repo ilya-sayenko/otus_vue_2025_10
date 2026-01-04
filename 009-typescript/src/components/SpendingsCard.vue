@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="card spendings-card">
+  <div class="card card-translated spendings-card">
     <h2>🧾 Расходы</h2>
     <div class="form-group">
       <label for="new-spending-name">За что платили?</label>
