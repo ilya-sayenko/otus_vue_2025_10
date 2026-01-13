@@ -16,7 +16,7 @@ html, body {
 }
 
 .content {
-  min-height: 100%;
+  min-height: 100vh;
   padding-bottom: 5rem;
 }
 
@@ -51,6 +51,7 @@ input, select, textarea {
 .header-main h1 {
   margin-bottom: 1rem;
   text-align: center;
+  cursor: pointer;
 }
 
 .header-main p {
@@ -63,7 +64,7 @@ input, select, textarea {
   color: colors.$text-footer;
   width: 100%;
   font-size: 0.9rem;
-  margin-top: -5rem;
+  //margin-top: -5rem;
 }
 
 .footer-main p {
@@ -71,6 +72,8 @@ input, select, textarea {
 }
 
 .card {
+  //display: flex;
+  //flex-direction: column;
   background: colors.$white;
   border-radius: 12px;
   padding: 1.5rem;
@@ -78,10 +81,6 @@ input, select, textarea {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-//.card-translated {
-//
-//}
 
 .card-translated:hover {
   transform: translateY(-5px);
@@ -92,6 +91,10 @@ input, select, textarea {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid colors.$card-border-header;
+}
+
+.party-header-card {
+  cursor: pointer;
 }
 
 .party-header-card p {
@@ -117,7 +120,7 @@ input, select, textarea {
 .party-card-name {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #2d3748;
+  color: #2d3748; /*TODO variable*/
   margin-bottom: 0.5rem;
 }
 
@@ -251,6 +254,9 @@ input, select, textarea {
 }
 
 .btn {
+  //display: block;
+  //margin-left: auto;
+  //margin-right: auto;
   color: colors.$text-light;
   width: 100%;
   padding: 0.85rem;
@@ -277,3 +283,44 @@ input, select, textarea {
 .btn-edit {
   margin-right: 0.5rem;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: colors.$white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid colors.$card-border-header;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+}
+

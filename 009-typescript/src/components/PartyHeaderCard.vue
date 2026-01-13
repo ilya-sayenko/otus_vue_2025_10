@@ -9,7 +9,6 @@
 <template>
   <div class="card party-header-card" v-if="party">
     <h2>{{ party.name }}</h2>
-<!--    <p>Дата создания: {{ party.description }}</p>-->
     <p>{{ party.description }}</p>
   </div>
 </template>
