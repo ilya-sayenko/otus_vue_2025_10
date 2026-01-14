@@ -30,14 +30,18 @@ async function createSpending() {
   split.splitType = SplitType.EQUAL;
   spending.split = split;
   await partyStore.createSpending(spending);
-  await partyStore.loadSpendingsByPartyId(partyId.value);
-  await partyStore.loadTransactionsByPartyId(partyId.value);
+  await Promise.all([
+    partyStore.loadSpendingsByPartyId(partyId.value),
+    partyStore.loadTransactionsByPartyId(partyId.value)
+  ]);
 }
 
 async function deleteSpendingById(id: string) {
   await partyStore.deleteSpendingById(id);
-  await partyStore.loadSpendingsByPartyId(partyId.value);
-  await partyStore.loadTransactionsByPartyId(partyId.value);
+  await Promise.all([
+    partyStore.loadSpendingsByPartyId(partyId.value),
+    partyStore.loadTransactionsByPartyId(partyId.value)
+  ]);
 }
 
 onMounted(async () => {

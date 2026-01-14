@@ -19,16 +19,20 @@ async function createParticipant() {
   participant.partyId = partyId.value;
   participant.name = participantName.value;
   await partyStore.createParticipant(participant);
-  await partyStore.loadParticipantsByPartyId(partyId.value);
-  await partyStore.loadTransactionsByPartyId(partyId.value);
+  await Promise.all([
+    partyStore.loadParticipantsByPartyId(partyId.value),
+    partyStore.loadTransactionsByPartyId(partyId.value)
+  ])
   participantName.value = '';
 }
 
 async function deleteParticipantById(participantId: string) {
   await partyStore.deleteParticipantById(participantId);
-  await partyStore.loadSpendingsByPartyId(partyId.value);
-  await partyStore.loadTransactionsByPartyId(partyId.value);
-  await partyStore.loadParticipantsByPartyId(partyId.value);
+  await Promise.all([
+      partyStore.loadSpendingsByPartyId(partyId.value),
+      partyStore.loadTransactionsByPartyId(partyId.value),
+      partyStore.loadParticipantsByPartyId(partyId.value)
+  ]);
 }
 
 onMounted(async () => {
