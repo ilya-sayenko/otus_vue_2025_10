@@ -9,7 +9,7 @@ import type {SpendingCreateRequest} from "@/http/models/SpendingCreateRequest.ts
 
 export class MoneySplitterHttpClient {
 
-  private baseUrl: string = 'http://localhost:8080/api/v1'; // TODO env variable
+  private baseUrl: string = import.meta.env.VITE_MONEY_SPLITTER_BACKEND_URL;
 
   async getPartyById(partyId: string): Promise<Party> {
     const response: AxiosResponse<Party> = await axios.get(`${this.baseUrl}/parties/${partyId}`);
