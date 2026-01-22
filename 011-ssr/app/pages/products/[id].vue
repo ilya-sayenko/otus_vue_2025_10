@@ -1,21 +1,8 @@
 <script setup>
-import axios from "axios";
-
 const route = useRoute()
-const productId = computed(() => route.params.id)
-const product = ref({})
+const productId = route.params.id
 const cartStore = useCartStore()
-
-function getProductHttp(id) {
-  return axios.get(`https://fakestoreapi.com/products/${id}`)
-}
-
-async function getProductData() {
-  getProductHttp(productId.value)
-    .then((response) => {
-      product.value = response.data;
-    })
-}
+const { data: product } = await useFetch(`https://fakestoreapi.com/products/${productId}`);
 
 function addProductToCart() {
   cartStore.putProduct({
@@ -25,10 +12,6 @@ function addProductToCart() {
     image: product.value.image
   })
 }
-
-onMounted(() => {
-  getProductData()
-})
 </script>
 
 <template>

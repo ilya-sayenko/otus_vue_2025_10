@@ -1,22 +1,5 @@
 <script setup>
-import axios from "axios";
-
-const products = ref([])
-
-function getProductsHttp() {
-  return axios.get('https://fakestoreapi.com/products');
-}
-
-async function getProducts() {
-  getProductsHttp()
-    .then((response) => {
-      products.value = response.data;
-    });
-}
-
-onMounted(() => {
-  getProducts()
-})
+const { data: products } = await useFetch('https://fakestoreapi.com/products');
 </script>
 
 <template>
